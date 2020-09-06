@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from './App';
 
-const Counter = ({ count, reset, decrement, increment }) => {
+const Counter = () => {
+  const { count, reset, decrement, increment } = useContext(AppContext);
   return (
     <>
       Count: {count}
