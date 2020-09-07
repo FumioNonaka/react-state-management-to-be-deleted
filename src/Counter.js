@@ -1,21 +1,14 @@
-import React, { useCallback, useContext } from 'react';
-import { AppContext } from './AppContext';
+import React from 'react';
+import { CounterCounter } from './CounterContainer';
 
 const Counter = () => {
-  const { state, dispatch } = useContext(AppContext);
-  const reset = useCallback((event) => dispatch({ type: 'reset' }), [dispatch]);
-  const decrement = useCallback((event) => dispatch({ type: 'decrement' }), [
-    dispatch,
-  ]);
-  const increment = useCallback((event) => dispatch({ type: 'increment' }), [
-    dispatch,
-  ]);
+  const counter = CounterCounter.useContainer();
   return (
     <>
-      Count: {state.count}
-      <button onClick={reset}>Reset</button>
-      <button onClick={decrement}>-</button>
-      <button onClick={increment}>+</button>
+      Count: {counter.count}
+      <button onClick={counter.reset}>Reset</button>
+      <button onClick={counter.decrement}>-</button>
+      <button onClick={counter.increment}>+</button>
     </>
   );
 };
