@@ -1,14 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useCallback, useContext } from 'react';
 import { AppContext } from './AppContext';
 
 const Counter = () => {
   const { state, dispatch } = useContext(AppContext);
+  const reset = useCallback((event) => dispatch({ type: 'reset' }), [dispatch]);
+  const decrement = useCallback((event) => dispatch({ type: 'decrement' }), [
+    dispatch,
+  ]);
+  const increment = useCallback((event) => dispatch({ type: 'increment' }), [
+    dispatch,
+  ]);
   return (
     <>
       Count: {state.count}
-      <button onClick={() => dispatch({ type: 'reset' })}>Reset</button>
-      <button onClick={() => dispatch({ type: 'decrement' })}>-</button>
-      <button onClick={() => dispatch({ type: 'increment' })}>+</button>
+      <button onClick={reset}>Reset</button>
+      <button onClick={decrement}>-</button>
+      <button onClick={increment}>+</button>
     </>
   );
 };
